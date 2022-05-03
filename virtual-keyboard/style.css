@@ -1,0 +1,154 @@
+body {
+    margin: 0 auto;
+    max-width: 790px;
+}
+
+h1,
+p {
+    text-align: center;
+}
+
+.container {
+    /* height: 200px; */
+    width: 790px;
+    background-color: #545454;
+}
+
+.key {
+    height: 50px;
+    width: 50px;
+    background-color: rgb(8, 8, 8);
+    display: inline-block;
+    margin: 3px 1.5px;
+    box-shadow: inset 1px 1px 10px 1px white;
+    color: #fff;
+    font-size: 25px;
+    line-height: 50px;
+    text-align: center;
+    font-family: 'Arial', 'Arial Narrow', sans-serif;
+    border-radius: 3px;
+    transition: .2s;
+    /* border-bottom: 2px solid red;
+    border-right: 2px solid red; */
+}
+
+.key--pressed {
+    background-color: rgb(35, 35, 35);
+    box-shadow: inset 1px 1px 10px 2px white;
+    transform: scale(.95);
+}
+
+.input {
+    width: 100%;
+    height: 100px;
+}
+
+#Backspace {
+    width: 95px;
+    font-size: 16px;
+    line-height: 56px;
+}
+
+#Tab {
+    width: 75px;
+    font-size: 16px;
+    line-height: 56px;
+}
+
+#Enter {
+    width: 70px;
+    font-size: 16px;
+    line-height: 56px;
+    position: absolute;
+    height: 105px;
+    /* z-index: 1; */
+    /* border-radius: 3px 0; */
+    /* box-shadow: inset 1px 1px 10px 1px white; */
+}
+
+
+/* #Enter::after {
+    display: inline-block;
+    content: '';
+    width: 60px;
+    height: 56px;
+    background-color: rgb(8, 8, 8);
+    box-shadow: inset 1px 1px 10px 1px white;
+    border-radius: 0 3px;
+    position: absolute;
+    top: 50px;
+    left: 10px;
+} */
+
+#CapsLock {
+    width: 75px;
+    font-size: 16px;
+    line-height: 56px;
+}
+
+#MetaRight,
+#MetaLeft,
+#AltRight,
+#AltLeft,
+#ControlLeft {
+    font-size: 16px;
+    line-height: 56px;
+}
+
+#ShiftLeft {
+    width: 75px;
+    font-size: 16px;
+    line-height: 56px;
+}
+
+#ShiftRight {
+    width: 70px;
+    font-size: 16px;
+    line-height: 56px;
+}
+
+#Backslash {
+    margin-right: 30px;
+    font-size: 16px;
+    line-height: 56px;
+}
+
+#Space {
+    width: 287px;
+    font-size: 16px;
+    line-height: 56px;
+    color: black;
+}
+
+.lang-button {
+    display: inline-block;
+    position: relative;
+}
+
+#lang {
+    display: none;
+}
+
+input[type=checkbox]+label {
+    cursor: pointer;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    font-size: 70px;
+    line-height: 50px;
+    z-index: 1;
+    position: absolute;
+    bottom: 10px;
+}
+
+#lang:checked+label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    font-size: 70px;
+    line-height: 50px;
+    z-index: 1;
+    position: absolute;
+    bottom: 10px;
+    cursor: pointer;
+}
