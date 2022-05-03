@@ -53,7 +53,9 @@ class Keyboard {
     });
 
     this.el.addEventListener('mousedown', (e) => {
-      //   debugger;
+      if (e.target.classList.contains('container')) {
+        return;
+      }
       if (!e.target.classList.contains('key')) {
         let letter = e.target.innerHTML;
         if (letter.length === 1) {
@@ -80,6 +82,9 @@ class Keyboard {
     });
 
     this.el.addEventListener('mouseup', (e) => {
+      if (e.target.classList.contains('container')) {
+        return;
+      }
       if (!e.target.classList.contains('key')) {
         e.target.parentElement.classList.toggle('key--pressed');
         return;
