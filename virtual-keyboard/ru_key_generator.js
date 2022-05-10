@@ -1,37 +1,3 @@
-//  const keys = new Map();
-
-//  currentLayout = 'en'
-
-// document.addEventListener("keydown", function (event) {
-//   let { key, code, altKey, shiftKey, keyCode } = event;
-//   let keyObj = {
-//     key: key,
-//     code: code,
-//     altKey: altKey,
-//     shiftKey: shiftKey,
-//     keyCode: keyCode,
-//   };
-//   debugger;
-//   if(keys.has(keyCode)){
-//       if(keyObj.shiftKey){
-//         let obj = keys.get(keyCode);
-//         obj.keyS = keyObj.key;
-//       }
-//       if (currentLayout === 'ru'){
-//         let obj = keys.get(keyCode);
-//         obj.keyRu = keyObj.key;
-//         if(keyObj.shiftKey){
-//             let obj = keys.get(keyCode);
-//             obj.keyRuS = keyObj.key;
-//           }
-//       }
-//   }else {
-//       keys.set(keyCode, keyObj);
-//   }
-
-//   console.log(keyObj);
-// });
-
 const keysSet = [
   {
     key: '>',
@@ -819,15 +785,15 @@ const keysSet = [
   },
 ];
 
-let shift = keysSet.filter((e) => !e.shiftKey);
-let noShift = keysSet.filter((e) => e.shiftKey);
+const shift = keysSet.filter((e) => !e.shiftKey);
+const noShift = keysSet.filter((e) => e.shiftKey);
 
-let ru = shift.map((e) => {
+const ru = shift.map((e) => {
   let noshiftkey = noShift.filter((s) => s.code === e.code)[0]?.key;
   if (!noshiftkey) {
     noshiftkey = e.key;
   }
-  e['keyShift'] = noshiftkey;
+  e.keyShift = noshiftkey;
   return e;
 });
 

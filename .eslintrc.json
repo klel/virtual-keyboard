@@ -9,6 +9,7 @@
     "sourceType": "module"
   },
   "rules": {
-    "import/extensions": "ignorePackages"
+    "react/jsx-filename-extension": [0],
+    "import/extensions": "off"
   }
 }

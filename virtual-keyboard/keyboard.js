@@ -6,6 +6,7 @@ import ruKeysSet from './ru_key_generator.js';
 
 class Keyboard {
   input;
+
   currentLayout = 'en';
 
   constructor(target) {
@@ -27,7 +28,7 @@ class Keyboard {
       }
       this.input.focus();
       if (e.shiftKey) {
-        this.setKeyContent(false);
+        Keyboard.setKeyContent(false);
       }
       if (e.code === 'Tab') {
         e.preventDefault();
@@ -37,19 +38,15 @@ class Keyboard {
       if (e.altKey && e.shiftKey) {
         document.querySelector('#lang').click();
       }
-      this.setKeyStyle(e);
+      Keyboard.setKeyStyle(e);
     });
 
     window.addEventListener('keyup', (e) => {
       if (!e.shiftKey) {
-        this.setKeyContent(true);
+        Keyboard.setKeyContent(true);
       }
 
-      this.setKeyStyle(e);
-    });
-
-    window.addEventListener('keypress', (e) => {
-      //this.input.value += e.key;
+      Keyboard.setKeyStyle(e);
     });
 
     this.el.addEventListener('mousedown', (e) => {
@@ -57,7 +54,7 @@ class Keyboard {
         return;
       }
       if (!e.target.classList.contains('key')) {
-        let letter = e.target.innerHTML;
+        const letter = e.target.innerHTML;
         if (letter.length === 1) {
           this.input.value += e.target.innerHTML;
         }
@@ -65,19 +62,11 @@ class Keyboard {
         return;
       }
 
-      let letter = e.target.children[0].innerHTML;
+      const letter = e.target.children[0].innerHTML;
       if (letter.length === 1) {
         this.input.value += e.target.children[0].innerHTML;
       }
-      //   debugger;
-      //   window.dispatchEvent(
-      //     new KeyboardEvent('keydown', {
-      //       code: e.target.id,
-      //       key: e.target.children[0].innerHTML,
-      //     })
-      //   );
 
-      //   this.input.value += e.target.dataset?.noShift;
       e.target.classList.toggle('key--pressed');
     });
 
@@ -96,7 +85,7 @@ class Keyboard {
   setLayout() {
     if (this.currentLayout === 'ru') {
       enKeysSet.forEach((data) => {
-        let key = new Key(data);
+        const key = new Key(data);
 
         key.el.dataset.shift = data.keyShift;
         key.el.dataset.noShift = data.key;
@@ -106,7 +95,7 @@ class Keyboard {
       this.currentLayout = 'en';
     } else {
       ruKeysSet.forEach((data) => {
-        let key = new Key(data);
+        const key = new Key(data);
 
         key.el.dataset.shift = data.keyShift;
         key.el.dataset.noShift = data.key;
@@ -116,14 +105,13 @@ class Keyboard {
     }
 
     this.appendLangButton();
-    //this.saveLayout();
   }
 
   appendLangButton() {
-    let box = document.createElement('div');
+    const box = document.createElement('div');
     box.classList.add('lang-button');
-    let checked = this.currentLayout === 'ru' ? 'checked' : '';
-    let pic = this.currentLayout === 'ru' ? '🇷🇺' : '🇬🇧';
+    const checked = this.currentLayout === 'ru' ? 'checked' : '';
+    const pic = this.currentLayout === 'ru' ? '🇷🇺' : '🇬🇧';
 
     box.innerHTML = `
     <input id="lang" type="checkbox" ${checked} />
@@ -132,9 +120,9 @@ class Keyboard {
 
     document.querySelector('.container').append(box);
 
-    document.querySelector('#lang').addEventListener('change', (e) => {
-      let c = document.querySelector('.container');
-      //   this.clearContainer();
+    document.querySelector('#lang').addEventListener('change', () => {
+      const c = document.querySelector('.container');
+
       c.innerHTML = '';
 
       this.saveLayout();
@@ -142,22 +130,17 @@ class Keyboard {
     });
   }
 
-  //   clearContainer() {
-  //     document.querySelectorAll('.key').forEach((e) => {
-  //       e.remove();
-  //     });
-
-  setKeyStyle(e) {
-    let key = document.querySelector(`#${e.code}`);
+  static setKeyStyle(e) {
+    const key = document.querySelector(`#${e.code}`);
     if (!key) {
       return;
     }
     key.classList.toggle('key--pressed');
   }
 
-  setKeyContent(shiftPressed) {
+  static setKeyContent(shiftPressed) {
     document.querySelectorAll('.key').forEach((e) => {
-      let content = shiftPressed ? e.dataset.noShift : e.dataset.shift;
+      const content = shiftPressed ? e.dataset.noShift : e.dataset.shift;
       e.innerHTML = `
                 <span class="keyContent">${content}</span>
             `;
@@ -172,7 +155,5 @@ class Keyboard {
     this.currentLayout = localStorage.getItem('keyboard-lt');
   }
 }
-
-// customElements.define("kbrd", Keyboard);
 
 export default Keyboard;
